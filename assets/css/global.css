@@ -27,12 +27,13 @@
 
 /* ---------- Tokens ---------- */
 :root{
-  /* Verdes de su web actual */
-  --verde-bosque:#224F0A;   /* color_3 de su Duda: bandas y tarjeta de contacto */
-  --verde-marca:#325E19;    /* color_5: titulares y botones */
-  --verde-hoja:#76C848;     /* el verde de "Rápidos y efectivos" y de la hoja del logo */
-  --verde-niebla:#EDF5E5;   /* fondo suave de sección */
-  --verde-niebla-2:#F6FAF1; /* campos, pasos */
+  --verde-bosque:#224F0A;
+  --verde-marca:#325E19;
+  --verde-hoja:#76C848;
+  --verde-niebla:#EDF5E5;
+  --verde-niebla-2:#F6FAF1;
+  --wa:#25D366;
+  --wa-tinta:#0B3D1A;
 
   --blanco:#FFFFFF;
   --tinta:#1E2916;
@@ -43,7 +44,6 @@
   --sombra-suave:0 14px 34px -18px rgba(34,79,10,.30);
   --sombra-alta:0 30px 70px -30px rgba(34,79,10,.38);
 
-  /* La hoja: radio grande en dos esquinas opuestas */
   --hoja-xl:150px 18px 150px 18px;
   --hoja-l:64px 12px 64px 12px;
   --hoja-m:28px 6px 28px 6px;
@@ -53,6 +53,7 @@
   --cuerpo:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
 
   --ease:cubic-bezier(.22,1,.36,1);
+  --muelle:cubic-bezier(.34,1.56,.64,1);
   --rapido:180ms;
   --base:420ms;
   --lento:820ms;
@@ -81,7 +82,7 @@ body{
   text-rendering:optimizeLegibility;
 }
 img{max-width:100%;height:auto;display:block}
-svg{display:inline-block;vertical-align:middle}
+svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 [hidden]{display:none!important}
 a{color:var(--verde-marca);text-decoration-thickness:2px;text-underline-offset:3px;text-decoration-color:var(--verde-hoja)}
 a:focus-visible{outline:3px solid var(--verde-hoja);outline-offset:3px;border-radius:4px}
@@ -99,7 +100,7 @@ h1,h2,h3{
   color:var(--tinta);
   text-wrap:balance;
 }
-h1{font-size:clamp(2.75rem,5.4vw,4.9rem);font-weight:800}
+h1{font-size:clamp(2.75rem,5.2vw,4.6rem);font-weight:800}
 h2{font-size:clamp(2rem,3.5vw,3rem);color:var(--verde-marca)}
 h3{font-size:clamp(1.4rem,2vw,1.7rem);color:var(--verde-marca)}
 
@@ -126,12 +127,70 @@ h3{font-size:clamp(1.4rem,2vw,1.7rem);color:var(--verde-marca)}
   background:var(--verde-bosque);color:#fff;
   border-radius:var(--hoja-s);
   font-weight:600;text-decoration:none;
-  transition:transform var(--rapido) var(--ease);
 }
 .salta:focus-visible{top:12px;outline:3px solid var(--verde-hoja);outline-offset:3px}
 
+/* Pictograma dentro de un titular */
+.ico{
+  display:inline-grid;place-items:center;
+  width:2.2em;height:2.2em;
+  margin-right:.55em;
+  vertical-align:middle;
+  background:var(--verde-niebla);
+  color:var(--verde-marca);
+  border-radius:var(--hoja-s);
+  font-size:.62em;
+}
+.ico svg{width:1.6em;height:1.6em;stroke-width:1.7}
+
+/* Lista de puntos con pictograma */
+.puntos{
+  list-style:none;
+  display:flex;flex-wrap:wrap;gap:.75rem;
+  margin-top:1.5rem;
+}
+.puntos li{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:.55rem 1rem .55rem .7rem;
+  background:var(--verde-niebla);
+  border-radius:var(--hoja-m);
+  font-weight:600;font-size:.95rem;color:var(--tinta);
+}
+.puntos svg{width:24px;height:24px;color:var(--verde-marca);flex:none}
+
+/* Chips flotantes */
+.chip{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.6rem 1rem .6rem .8rem;
+  background:#fff;color:var(--tinta);
+  border-radius:var(--hoja-m);
+  box-shadow:var(--sombra-alta);
+  font-weight:600;font-size:.92rem;line-height:1.2;
+}
+.chip svg{width:22px;height:22px;color:var(--verde-marca);flex:none}
+
+/* Sellos de confianza */
+.sellos{list-style:none;display:flex;flex-wrap:wrap;gap:1rem 1.75rem}
+.sello{display:flex;align-items:center;gap:.7rem}
+.sello svg{width:30px;height:30px;color:var(--verde-marca);flex:none}
+.sello span{display:grid;line-height:1.25}
+.sello b{font-size:.98rem;color:var(--tinta)}
+.sello small{font-size:.8rem;color:var(--texto-suave)}
+
+/* Tiles con pictograma grande */
+.tile__ico{
+  display:grid;place-items:center;
+  width:60px;height:60px;
+  background:var(--verde-marca);color:#fff;
+  border-radius:var(--hoja-m);
+  margin-bottom:1.1rem;
+  transition:transform var(--base) var(--muelle),background-color var(--rapido) var(--ease);
+}
+.tile__ico svg{width:30px;height:30px;stroke-width:1.7}
+
 /* ---------- Botones ---------- */
 .btn{
+  position:relative;
   display:inline-flex;align-items:center;gap:.6rem;
   padding:.9rem 1.5rem;
   font-family:var(--cuerpo);font-weight:600;font-size:1rem;line-height:1;
@@ -157,11 +216,9 @@ h3{font-size:clamp(1.4rem,2vw,1.7rem);color:var(--verde-marca)}
 .btn:active{transform:translateY(0) scale(.98);box-shadow:var(--sombra-suave)}
 .btn:focus-visible{outline:3px solid var(--verde-hoja);outline-offset:3px}
 
-.btn--grande{padding:1.1rem 1.75rem;font-size:1.05rem}
+.btn--grande{padding:1.05rem 1.6rem;font-size:1.02rem}
 
-.btn--linea{
-  background:transparent;color:var(--verde-marca);box-shadow:none;
-}
+.btn--linea{background:transparent;color:var(--verde-marca);box-shadow:none}
 .btn--linea:hover{background:var(--verde-niebla);color:var(--verde-bosque);box-shadow:none}
 
 .btn--claro{
@@ -170,6 +227,13 @@ h3{font-size:clamp(1.4rem,2vw,1.7rem);color:var(--verde-marca)}
 }
 .btn--claro:hover{background:var(--verde-niebla);border-color:var(--verde-niebla);color:var(--verde-bosque)}
 .btn--claro:focus-visible{outline-color:#fff}
+
+.btn--wa{background:var(--wa);border-color:var(--wa);color:var(--wa-tinta)}
+.btn--wa:hover{background:#1fc05a;border-color:#1fc05a;color:var(--wa-tinta)}
+.btn--wa svg{stroke-width:1.6}
+.btn--wa:hover svg:last-child{transform:none}
+.btn--wa svg:first-child{animation:wa-latido 3.2s var(--ease) infinite}
+@keyframes wa-latido{0%,80%,100%{transform:scale(1)}86%{transform:scale(1.14) rotate(-8deg)}93%{transform:scale(1.14) rotate(8deg)}}
 
 /* ---------- Cabecera ---------- */
 .cab{
@@ -187,9 +251,12 @@ h3{font-size:clamp(1.4rem,2vw,1.7rem);color:var(--verde-marca)}
 .cab__fila{
   display:flex;align-items:center;gap:1rem;
   min-height:var(--cab-alto);
+  transition:min-height var(--base) var(--ease);
 }
+.cab--scroll .cab__fila{min-height:64px}
 .cab__logo{display:inline-flex;border-radius:6px}
-.cab__logo img{width:clamp(150px,13vw,196px);height:auto}
+.cab__logo img{width:clamp(150px,13vw,196px);height:auto;transition:transform var(--base) var(--ease)}
+.cab--scroll .cab__logo img{transform:scale(.9);transform-origin:left center}
 
 .cab__nav{margin-left:auto}
 .cab__lista{display:flex;align-items:center;gap:.15rem;list-style:none}
@@ -226,7 +293,7 @@ h3{font-size:clamp(1.4rem,2vw,1.7rem);color:var(--verde-marca)}
 
 .cab__sub{
   position:absolute;top:calc(100% + 2px);left:0;
-  min-width:250px;
+  min-width:270px;
   padding:.5rem;list-style:none;
   background:#fff;border:1px solid var(--linea);
   border-radius:var(--hoja-m);
@@ -238,11 +305,13 @@ h3{font-size:clamp(1.4rem,2vw,1.7rem);color:var(--verde-marca)}
 .cab__item--sub:focus-within .cab__sub,
 .cab__item--sub.abierto .cab__sub{opacity:1;transform:none;pointer-events:auto}
 .cab__sub a{
-  display:block;padding:.65rem .9rem;
+  display:flex;align-items:center;gap:.7rem;
+  padding:.65rem .9rem;
   color:var(--tinta);font-weight:500;text-decoration:none;
   border-radius:10px;
   transition:background-color var(--rapido) var(--ease),color var(--rapido) var(--ease);
 }
+.cab__sub a svg{color:var(--verde-marca);flex:none}
 .cab__sub a:hover{background:var(--verde-niebla);color:var(--verde-bosque)}
 .cab__sub a:focus-visible{outline:3px solid var(--verde-hoja);outline-offset:-2px}
 .cab__sub a:active{background:var(--linea)}
@@ -250,7 +319,6 @@ h3{font-size:clamp(1.4rem,2vw,1.7rem);color:var(--verde-marca)}
 .cab__tel{padding:.75rem 1.2rem;font-size:.98rem;box-shadow:none}
 .cab__tel:hover{box-shadow:var(--sombra-suave)}
 
-/* Hamburguesa */
 .cab__menu{
   display:none;
   position:relative;width:46px;height:46px;
@@ -312,6 +380,40 @@ h3{font-size:clamp(1.4rem,2vw,1.7rem);color:var(--verde-marca)}
   .cab__logo img{width:140px}
 }
 
+/* ---------- Barra fija móvil: Llamar · WhatsApp ---------- */
+.barra{
+  position:fixed;left:0;right:0;bottom:0;z-index:40;
+  display:none;
+  gap:.6rem;
+  padding:.6rem var(--margen) calc(.6rem + env(safe-area-inset-bottom));
+  background:rgba(255,255,255,.96);
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
+  border-top:1px solid var(--linea);
+  transform:translateY(110%);
+  transition:transform var(--base) var(--ease);
+}
+.barra--visible{transform:none}
+.barra__btn{
+  flex:1;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  padding:.95rem 1rem;
+  background:var(--verde-marca);color:#fff;
+  border-radius:var(--hoja-s);
+  font-weight:700;text-decoration:none;
+  transition:transform var(--rapido) var(--ease),background-color var(--rapido) var(--ease);
+}
+.barra__btn svg{width:22px;height:22px}
+.barra__btn:hover{background:var(--verde-bosque)}
+.barra__btn:active{transform:scale(.97)}
+.barra__btn:focus-visible{outline:3px solid var(--verde-hoja);outline-offset:2px}
+.barra__btn--wa{background:var(--wa);color:var(--wa-tinta)}
+.barra__btn--wa:hover{background:#1fc05a}
+@media (max-width:1099px){
+  .barra{display:flex}
+  body{padding-bottom:0}
+  .pie__barra{padding-bottom:calc(1.1rem + 74px)}
+}
+
 /* ---------- Pie ---------- */
 .pie{padding-top:var(--sec);background:#fff}
 .pie__env{
@@ -324,14 +426,19 @@ h3{font-size:clamp(1.4rem,2vw,1.7rem);color:var(--verde-marca)}
 }
 .pie__logo{display:inline-flex;border-radius:6px;max-width:240px}
 .pie__logo img{width:100%}
-.pie li{overflow-wrap:anywhere}
+.pie__roesb{
+  display:flex;align-items:center;gap:.6rem;
+  margin-top:1.25rem;
+  font-size:.92rem;color:var(--texto-suave);
+}
+.pie__roesb svg{width:20px;height:20px;color:var(--verde-marca);flex:none}
 .pie__titulo{
   font-family:var(--cuerpo);font-weight:700;
   font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;
   color:var(--tinta);margin-bottom:1.1rem;
 }
 .pie ul{list-style:none;display:grid;gap:.65rem}
-.pie li{display:flex;gap:.7rem;align-items:center}
+.pie li{display:flex;gap:.7rem;align-items:center;overflow-wrap:anywhere}
 .pie svg{width:20px;height:20px;color:var(--verde-marca);flex:none}
 .pie a{color:var(--texto);text-decoration:none;transition:color var(--rapido) var(--ease)}
 .pie a:hover{color:var(--verde-marca);text-decoration:underline}
@@ -342,16 +449,31 @@ h3{font-size:clamp(1.4rem,2vw,1.7rem);color:var(--verde-marca)}
 }
 .pie__barra-env{display:flex;flex-wrap:wrap;gap:.35rem 1.5rem}
 
-/* ---------- Aparición al hacer scroll ---------- */
+/* ---------- Aparición al hacer scroll (variantes) ---------- */
 .js .revela{
-  opacity:0;transform:translateY(20px);
+  opacity:0;transform:translateY(22px);
   transition:opacity var(--lento) var(--ease),transform var(--lento) var(--ease);
   transition-delay:calc(var(--i,0) * 80ms);
 }
+.js .revela--zoom{transform:translateY(16px) scale(.96)}
+.js .revela--izq{transform:translateX(-28px)}
+.js .revela--der{transform:translateX(28px)}
+.js .revela--pop{transform:translateY(10px) scale(.88);transition-timing-function:var(--muelle),var(--muelle);transition-duration:var(--base),var(--base)}
 .js .revela.visto{opacity:1;transform:none}
+
+/* ---------- Parallax suave dentro de la hoja (solo navegadores con scroll-driven animations) ---------- */
+@supports (animation-timeline: view()){
+  .parallax img{
+    animation:parallax-hoja linear both;
+    animation-timeline:view();
+    animation-range:entry 0% exit 100%;
+  }
+  @keyframes parallax-hoja{from{transform:translateY(-7%) scale(1.14)}to{transform:translateY(7%) scale(1.14)}}
+}
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .js .revela{opacity:1;transform:none;transition:none}
+  .parallax img{animation:none!important}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
