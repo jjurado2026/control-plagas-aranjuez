@@ -18,5 +18,8 @@ cd prototype && python3 -m http.server 8000
 ## Publicación
 La carpeta `prototype/` se publica en la rama `gh-pages` con `git subtree push --prefix=prototype origin gh-pages`.
 
+## Caducidad
+La propuesta se ve 10 días desde su envío, el 6 de septiembre de 2026 (el día de envío cuenta): hasta el **15 de septiembre de 2026 a las 23:59** (hora de Madrid). Desde el 16, `index.html` lleva a `caducada.html`: «No puedes ver esta página porque han pasado más de 10 días desde su envío. Si sigues con interés, escríbeme a jjuradogarciadelrio@gmail.com.» y la home entera en miniatura (`assets/img/home-miniatura.webp`). La fecha está en el primer `<script>` de `index.html` (`Date.UTC(2026, 8, 15, 22, 0)`). Solo caduca en `github.io`: en local se sigue viendo; `?caducada` simula el aviso.
+
 ---
 Diseño y desarrollo: **Juan Jurado**
